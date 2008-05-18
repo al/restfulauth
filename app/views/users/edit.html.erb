@@ -1,0 +1,17 @@
+
+
+<h2>Edit Your Account</h2>
+<p>
+	<%= link_to 'Show Profile', user_path(@user) %>
+	|
+	<%= link_to 'Change Password', change_password_path %>
+</p>
+
+<% form_for :user, @user, :url => user_path(@user), :html => { :method => :put } do |f| -%>
+  <p>
+  	Email:
+		<br/>
+		<%= f.text_field :email, :size => 60 %>
+	</p>
+	<%= submit_tag 'Save' %>
+<% end -%>

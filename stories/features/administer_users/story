@@ -1,0 +1,41 @@
+
+
+Story: administer users
+  As a user
+  Jim visits the user administration page
+  So that he can edit users' accounts
+
+  Scenario: Jim is not logged in
+    Given Jim is not logged in
+    When Jim navigates to /users
+    Then he should see the home page
+
+  Scenario: Jim is logged in but does not have adminstrator privileges
+    Given Jim is logged in
+    When Jim navigates to /users
+    Then he should see the home page
+
+  Scenario: Jim is logged in as an administrator, but cannot disable his own account
+    Given Jim is logged in
+    And he has 'administrator' privileges
+    When Jim navigates to /users
+    Then he should not see a 'disable' button
+
+  Scenario: Jim is logged in as an administrator, and clicks Tim's disable button
+    Given Tim is not logged in
+    And Jim is logged in
+    And he has 'administrator' privileges
+    When Jim navigates to /users
+    And he clicks the 'disable' button
+    Then Tim's account should be disabled
+    And Jim should see the user administration page
+
+  Scenario: Jim is logged in as an administrator, clicks on his edit roles link, and changes his roles
+    Given Jim is logged in
+    And he has 'administrator' privileges
+    And he does not have 'super administrator' privileges
+    When Jim navigates to /users
+    And he clicks the 'edit roles' link
+    And he clicks the 'assign role' button
+    Then Jim should be assigned 'super administrator' privileges
+    And he should see his edit roles page

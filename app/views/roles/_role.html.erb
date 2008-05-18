@@ -1,0 +1,14 @@
+
+
+<li>
+  <%= role.rolename %>
+    <% if @user.has_role?(role.rolename) -%>
+			<% form_tag user_role_path(:id => role.id, :user_id => @user.id), { :method => :delete } do -%>
+				<%= submit_tag 'remove role' %>
+			<% end -%>
+    <% else -%>
+			<% form_tag user_role_path(:id => role.id, :user_id => @user.id), { :method => :put } do -%>
+				<%= submit_tag 'assign role' %>
+			<% end -%>
+    <% end -%>
+</li>

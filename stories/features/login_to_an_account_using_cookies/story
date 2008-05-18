@@ -1,0 +1,29 @@
+
+
+Story: login to an account using cookies
+  As a user
+  Jim visits his home page
+  So that he can login to his account automatically using a previously set cookie
+
+  Scenario: Jim does not request that his login be rememebered
+    Given Jim is not logged in
+    When Jim navigates to any page
+    And he clicks the 'Sign in' link
+    And he fills in 'login' with 'Jim'
+    And he fills in 'password' with 'password'
+    And he clicks the 'Log in' button
+    And he starts a new session
+    And he navigates to his home page
+    Then he should see the login page
+
+  Scenario: Jim requests that his login be rememebered
+    Given Jim is not logged in
+    When Jim navigates to any page
+    And he clicks the 'Sign in' link
+    And he fills in 'login' with 'Jim'
+    And he fills in 'password' with 'password'
+    And he checks 'remember_me'
+    And he clicks the 'Log in' button
+    And he starts a new session
+    And he navigates to his home page
+    Then he should see his home page

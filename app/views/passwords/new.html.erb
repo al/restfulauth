@@ -1,0 +1,12 @@
+
+
+<h2>Reset Your Password</h2>
+<br/>
+Please enter your email and click the button to start the password reset process. 
+<% form_tag password_path do -%>
+	Email
+	<br/>
+	<%= text_field_tag :email, '', :size => 60 %>
+	<br/>
+	<%= submit_tag 'Reset password' %>
+<% end %>

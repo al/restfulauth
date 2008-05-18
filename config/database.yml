@@ -1,0 +1,23 @@
+development:
+  adapter: mysql
+  database: restfulauth_development
+  username: restfulauth
+  password: restfulauth
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+test:
+  adapter: mysql
+  database: restfulauth_test
+  username: restfulauth
+  password: restfulauth
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql
+  database: restfulauth_production
+  username: restfulauth
+  password: restfulauth
+  host: localhost
+  socket: /var/run/mysqld/mysqld.sock

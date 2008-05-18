@@ -1,0 +1,57 @@
+
+
+Story: reset password
+  As a user
+  Jim visits the reset password page
+  So that he can reset his forgotten password
+
+  Scenario: Jim is logged in
+    Given Jim is logged in
+    When Jim navigates to /password/new
+    Then he should see the home page
+
+  Scenario: Jim is not logged in, fills in the form incorrectly, and clicks reset password button
+    Given Jim is not logged in
+    When Jim navigates to /password/new
+    And he clicks the 'Reset password' button
+    Then he should see the reset password page
+
+  Scenario: Jim is not logged in, fills in the form correctly, and clicks reset password button
+    Given Jim is not logged in
+    And a working email system
+    When Jim navigates to /password/new
+    And he fills in 'email' with 'Jim@domain.tld'
+    And he clicks the 'Reset password' button
+    Then he should see the login page
+    And password reset code should be emailed
+    
+  Scenario: Jim visits an invalid password reset url, fills in the form correctly, and clicks change password button
+  	Given Jim is not logged in
+    When Jim navigates to /password/new
+    And he fills in 'email' with 'Jim@domain.tld'
+    And he clicks the 'Reset password' button
+  	And he navigates to an invalid password reset page
+    Then he should see the sign up page
+  
+  Scenario: Jim visits his password reset url, fills in the form incorrectly, and clicks change password button
+  	Given Jim is not logged in
+    When Jim navigates to /password/new
+    And he fills in 'email' with 'Jim@domain.tld'
+    And he clicks the 'Reset password' button
+  	And he navigates to his password reset page
+  	And he fills in 'password' with 'new password'
+  	And he clicks the 'Change password' button
+    Then his password should not be 'new password'
+    And he should see the reset password page
+  
+  Scenario: Jim visits his password reset url, fills in the form correctly, and clicks change password button
+  	Given Jim is not logged in
+    When Jim navigates to /password/new
+    And he fills in 'email' with 'Jim@domain.tld'
+    And he clicks the 'Reset password' button
+  	And he navigates to his password reset page
+  	And he fills in 'password' with 'new password'
+  	And he fills in 'password_confirmation' with 'new password'
+  	And he clicks the 'Change password' button
+    Then his password should be 'new password'
+    And he should see the login page

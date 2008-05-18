@@ -1,0 +1,28 @@
+
+
+Story: login to an account
+  As a user
+  Jim visits any page, clicks the sign in link, and submits the form
+  So that he can login to his account
+
+  Scenario: Jim is already logged in to his account
+    Given Jim is logged in
+    When Jim navigates to any page
+    Then he should not see a 'Sign up' link
+
+  Scenario: Jim is not logged in to his account, clicks the sign up link, but does not fill in all required form fields
+    Given Jim is not logged in
+    When Jim navigates to any page
+    And he clicks the 'Sign in' link
+    And he fills in 'login' with 'Jim'
+    And he clicks the 'Log in' button
+    Then he should see the login page
+
+  Scenario: Jim is not logged in to his account, clicks the sign up link, and fills in all required form fields
+    Given Jim is not logged in
+    When Jim navigates to any page
+    And he clicks the 'Sign in' link
+    And he fills in 'login' with 'Jim'
+    And he fills in 'password' with 'password'
+    And he clicks the 'Log in' button
+    Then he should see his home page

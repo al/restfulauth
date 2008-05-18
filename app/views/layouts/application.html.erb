@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+<html xmlns='http://www.w3.org/1999/xhtml'
+			xml:lang='en'
+			lang='en'>
+	<head>
+		<title><%= @page_title %></title>
+		<meta http-equiv='Content-Type'
+					content='text/html; charset=UTF-8'/>
+	</head>
+	
+	<body>
+		<ul>
+		  <% if logged_in? %>
+		    <li>Welcome <%= link_to(h(current_user.login.capitalize), user_path(current_user), { :title => 'Navigate to your home page' }) -%></li>
+		    <ul>
+			    <% if current_user.has_role?('administrator') -%>
+		        <li><%= link_to 'Administer Users', users_path, { :title => 'Administrator\'s page' } -%></li>
+		      <% end -%>
+			    <li><%= link_to 'Edit Account', edit_user_path(current_user), { :title => 'Change you account settings' } -%></li>
+			    <li><%= link_to 'Sign out', logout_url, { :title => 'Sign out' } -%></li>
+		    </ul>
+	    <% else -%>
+	      <li><%= link_to 'Sign in', new_session_path, { :title => 'Sign in' } -%></li>
+	      <li><%= link_to 'Sign up', new_user_path, { :title => 'Create a new account' } -%></li>
+	    <% end -%>
+		</ul>
+
+		<%= yield :layout %>
+	</body>
+</html>

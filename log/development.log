@@ -1,0 +1,47 @@
+  [4;36;1mSQL (0.000175)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Table 'schema_info' already exists: CREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000161)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000069)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000063)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000066)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000065)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000113)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000313)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.000867)[0m   [0mSHOW FIELDS FROM `pages`[0m
+  [4;36;1mSQL (0.000775)[0m   [0;1mdescribe `pages`[0m
+  [4;35;1mSQL (0.000380)[0m   [0mSHOW KEYS FROM `pages`[0m
+  [4;36;1mSQL (0.000793)[0m   [0;1mSHOW FIELDS FROM `permissions`[0m
+  [4;35;1mSQL (0.000796)[0m   [0mdescribe `permissions`[0m
+  [4;36;1mSQL (0.000519)[0m   [0;1mSHOW KEYS FROM `permissions`[0m
+  [4;35;1mSQL (0.000787)[0m   [0mSHOW FIELDS FROM `roles`[0m
+  [4;36;1mSQL (0.000762)[0m   [0;1mdescribe `roles`[0m
+  [4;35;1mSQL (0.000340)[0m   [0mSHOW KEYS FROM `roles`[0m
+  [4;36;1mSQL (0.000783)[0m   [0;1mSHOW FIELDS FROM `sessions`[0m
+  [4;35;1mSQL (0.000899)[0m   [0mdescribe `sessions`[0m
+  [4;36;1mSQL (0.000413)[0m   [0;1mSHOW KEYS FROM `sessions`[0m
+  [4;35;1mSQL (0.001164)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.001173)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.000966)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.000113)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.077850)[0m   [0mDROP DATABASE IF EXISTS `restfulauth_test`[0m
+  [4;36;1mSQL (0.000272)[0m   [0;1mCREATE DATABASE `restfulauth_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;35;1mSQL (0.000102)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: Unknown table 'pages': DROP TABLE `pages`[0m
+  [4;35;1mSQL (0.055709)[0m   [0mCREATE TABLE `pages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255) DEFAULT NULL, `body` text DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: Unknown table 'permissions': DROP TABLE `permissions`[0m
+  [4;35;1mSQL (0.045414)[0m   [0mCREATE TABLE `permissions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `role_id` int(11) NOT NULL, `user_id` int(11) NOT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.067687)[0m   [0;1mCREATE INDEX `index_permissions_on_user_id` ON `permissions` (`user_id`)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'roles': DROP TABLE `roles`[0m
+  [4;36;1mSQL (0.051162)[0m   [0;1mCREATE TABLE `roles` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `rolename` varchar(255) DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'sessions': DROP TABLE `sessions`[0m
+  [4;36;1mSQL (0.048197)[0m   [0;1mCREATE TABLE `sessions` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `session_id` varchar(255) NOT NULL, `data` text DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.066871)[0m   [0mCREATE INDEX `index_sessions_on_session_id` ON `sessions` (`session_id`)[0m
+  [4;36;1mSQL (0.082104)[0m   [0;1mCREATE INDEX `index_sessions_on_updated_at` ON `sessions` (`updated_at`)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: Unknown table 'users': DROP TABLE `users`[0m
+  [4;36;1mSQL (0.052241)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, `crypted_password` varchar(40) NOT NULL, `salt` varchar(40) NOT NULL, `activation_code` varchar(40) NOT NULL, `password_reset_code` varchar(40) DEFAULT NULL, `remember_token` varchar(40) DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, `remember_token_expires_at` datetime DEFAULT NULL, `activated_at` datetime DEFAULT NULL, `enabled` tinyint(1) DEFAULT 1) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.074702)[0m   [0mCREATE INDEX `index_users_on_login` ON `users` (`login`)[0m
+  [4;36;1mSQL (0.065610)[0m   [0;1mCREATE INDEX `index_users_on_email` ON `users` (`email`)[0m
+  [4;35;1mSQL (0.031552)[0m   [0mCREATE TABLE `schema_info` (version int(11))[0m
+  [4;36;1mSQL (0.000336)[0m   [0;1mINSERT INTO `schema_info` (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000671)[0m   [0mSHOW FIELDS FROM `schema_info`[0m
+  [4;36;1mSQL (0.000206)[0m   [0;1mUPDATE schema_info SET version = 5[0m

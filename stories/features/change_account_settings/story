@@ -1,0 +1,19 @@
+
+
+Story: change account settings
+  As a user
+  Jim visits his edit account page
+  So that he can edit his account
+
+  Scenario: Jim is not logged in
+    Given Jim is not logged in
+    When Jim navigates to /users/:id/edit
+    Then he should see the login page
+
+  Scenario: Jim is logged in, fills in the form, and clicks save
+    Given Jim is logged in
+    When Jim navigates to /users/:id/edit
+    And he fills in 'user[email]' with 'newemail@domain.tld'
+    And he clicks the 'Save' button
+    Then his email should be 'newemail@domain.tld'
+    And he should see his home page

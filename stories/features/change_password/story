@@ -1,0 +1,29 @@
+
+
+Story: change password
+  As a user
+  Jim visits the change password page
+  So that he can change his password
+
+  Scenario: Jim is not logged in
+    Given Jim is not logged in
+    When Jim navigates to /change_password
+    Then he should see the login page
+
+  Scenario: Jim is logged in, fills in the form incorrectly, and clicks change password button
+    Given Jim is logged in
+    When Jim navigates to /change_password
+    And he fills in 'password' with 'new password'
+    And he clicks the 'Change password' button
+    Then his password should not be 'new password'
+    And he should see the change password page
+
+  Scenario: Jim is logged in, fills in the form correctly, and clicks change password button
+    Given Jim is logged in
+    When Jim navigates to /change_password
+    And he fills in 'old_password' with 'password'
+    And he fills in 'password' with 'new password'
+    And he fills in 'password_confirmation' with 'new password'
+    And he clicks the 'Change password' button
+    Then his password should be 'new password'
+    And he should see his account settings page

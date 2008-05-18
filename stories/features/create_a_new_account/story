@@ -1,0 +1,31 @@
+
+
+Story: create a new account
+  As a user
+  Jim visits any page, clicks the sign up link, and submits the form
+  So that he can create a new account
+
+  Scenario: Jim is already logged in to his account
+    Given Jim is logged in
+    When Jim navigates to any page
+    Then he should not see a 'Sign up' link
+
+  Scenario: Jim does not have an account, clicks the sign up link, but does not fill in all required form fields
+    Given Jim does not have an account
+    When Jim navigates to any page
+    And he clicks the 'Sign up' link
+    And he fills in 'user[login]' with 'Jim'
+    And he clicks the 'Sign up' button
+    Then he should see the sign up page
+
+  Scenario: Jim does not have an account, clicks the sign up link, and fills in all required form fields
+    Given Jim does not have an account
+    When Jim navigates to any page
+    And he clicks the 'Sign up' link
+    And he fills in 'user[login]' with 'Jim'
+    And he fills in 'user[password]' with 'password'
+    And he fills in 'user[password_confirmation]' with 'password'
+    And he fills in 'user[email]' with 'someone@domain.tld'
+    And he clicks the 'Sign up' button
+    Then his new account should be created
+    And he should see the login page
